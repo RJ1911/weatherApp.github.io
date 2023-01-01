@@ -59,7 +59,7 @@ const input = document.querySelector("input");
 const data_container = document.querySelector(".data-container");
 
 const getWeather = async (city) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0047df6e414bf05f33930a8e660be34d&units=metric`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${secrets.OPENWEATHER_API_KEY}&units=metric`);
     return response.json();
 
 }
