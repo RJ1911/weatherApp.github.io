@@ -35,7 +35,7 @@ const getCurrentDate = (timezoneOffset) => {
     hours = hours % 12;
     hours = hours ? hours : 12;
 
-    const date = `${weekday}   |   ${day} ${month}   |   ${hours}:${minutes}${ampm}`;
+    const date = `${weekday}   |   ${day} ${month}   |   ${hours}:${minutes} ${ampm}`;
 
     return date;
 }
