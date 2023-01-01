@@ -10,8 +10,6 @@
 */
 
 
-// API_KEY = "0047df6e414bf05f33930a8e660be34d";
-// API = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0047df6e414bf05f33930a8e660be34d`;
 
 
 /*====================================Date======================================================== */
@@ -107,7 +105,7 @@ const getWeatherIcon = (id, icon) => {
     // rain
 
     else if (id >= 500 && id < 600) {
-        img = "rain";
+        imgName = "rain";
     }
 
     // snow
@@ -138,9 +136,10 @@ form.addEventListener("submit", (event) => {
 
         if (data.cod == 404) {
             data_container.innerHTML = "<h1> City Not Found!</h1>"
-            throw new Error("City Not Found");
+            return;
         }
         else {
+
             const temp = data.main.temp;
             const humidity = data.main.humidity;
             const country = data.sys.country;
@@ -149,6 +148,7 @@ form.addEventListener("submit", (event) => {
             const icon = data.weather[0].icon;
 
             const conditionImage = getWeatherIcon(conditionId, icon);
+           // console.log(conditionId, conditionImage, data);
 
             const timezoneOffset = data.timezone;
             const date = getCurrentDate(timezoneOffset);
@@ -158,11 +158,11 @@ form.addEventListener("submit", (event) => {
             const loading = setTimeout(() => {
                 data_container.innerHTML = `
                 <div class="data-items"><span class="city">${city}</span> , <span class="country">${country}</span></div>
-                <div class="data-items date">${date}</div>
                 <img class="condition-image" src="./weatherIcons/${conditionImage}.png" alt="Weather Condition Image">
                 <div class="data-items condition">${condition}</div>
                 <div class="data-items">Temperature :&nbsp;&nbsp;<span class="temp-value">${temp} &deg;C</span></div>
                 <div class="data-items">Humidity :&nbsp;&nbsp;<span class="humidity-value">${humidity}</span> &percnt;</div>
+                <div class="data-items date">${date}</div>
                 `;
             }, 1000);
         }
