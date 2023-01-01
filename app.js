@@ -24,7 +24,6 @@ const getCurrentDate = (timezoneOffset) => {
     const utc = localTime + localOffset
     const city = utc + (1000 * timezoneOffset)
     const fetchedCityDate = new Date(city);
-    console.log(fetchedCityDate);
 
     const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
     const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -132,10 +131,13 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     var city = input.value;
 
-    let weatherData;
+    data_container.innerHTML = `<div class="loader">
+    <div class="dots-1"></div></div>`;
+
     getWeather(city).then((data) => {
+
         if (data.cod == 404) {
-            data_container.innerHTML = "<div> City Not Found!</div>"
+            data_container.innerHTML = "<h1> City Not Found!</h1>"
             throw new Error("City Not Found");
         }
         else {
@@ -148,21 +150,21 @@ form.addEventListener("submit", (event) => {
 
             const conditionImage = getWeatherIcon(conditionId, icon);
 
-            console.log(condition);
-            console.log(conditionId);
-            console.log(conditionImage);
-
             const timezoneOffset = data.timezone;
             const date = getCurrentDate(timezoneOffset);
             city = data.name;
-            data_container.innerHTML = `
-            <div class="data-items"><span class="city">${city}</span> , <span class="country">${country}</span></div>
-            <div class="data-items date">${date}</div>
-            <img class="condition-image" src="./weatherIcons/${conditionImage}.png" alt="Weather Condition Image">
-            <div class="data-items condition">${condition}</div>
-            <div class="data-items">Temperature :&nbsp;&nbsp;<span class="temp-value">${temp} &deg;C</span></div>
-            <div class="data-items">Humidity :&nbsp;&nbsp;<span class="humidity-value">${humidity}</span> &percnt;</div>
-            `;
+
+
+            const loading = setTimeout(() => {
+                data_container.innerHTML = `
+                <div class="data-items"><span class="city">${city}</span> , <span class="country">${country}</span></div>
+                <div class="data-items date">${date}</div>
+                <img class="condition-image" src="./weatherIcons/${conditionImage}.png" alt="Weather Condition Image">
+                <div class="data-items condition">${condition}</div>
+                <div class="data-items">Temperature :&nbsp;&nbsp;<span class="temp-value">${temp} &deg;C</span></div>
+                <div class="data-items">Humidity :&nbsp;&nbsp;<span class="humidity-value">${humidity}</span> &percnt;</div>
+                `;
+            }, 1000);
         }
 
     })
