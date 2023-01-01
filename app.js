@@ -59,7 +59,7 @@ const input = document.querySelector("input");
 const data_container = document.querySelector(".data-container");
 
 const getWeather = async (city) => {
-    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${secrets.OPENWEATHER_API_KEY}&units=metric`);
+    const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0047df6e414bf05f33930a8e660be34d&units=metric`);
     return response.json();
 
 }
@@ -148,7 +148,7 @@ form.addEventListener("submit", (event) => {
             const icon = data.weather[0].icon;
 
             const conditionImage = getWeatherIcon(conditionId, icon);
-           // console.log(conditionId, conditionImage, data);
+            // console.log(conditionId, conditionImage, data);
 
             const timezoneOffset = data.timezone;
             const date = getCurrentDate(timezoneOffset);
