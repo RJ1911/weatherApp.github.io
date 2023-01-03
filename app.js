@@ -57,6 +57,7 @@ nd = new Date(atlanta)
 const form = document.querySelector("form");
 const input = document.querySelector("input");
 const data_container = document.querySelector(".data-container");
+const data_card = document.querySelector(".data_card");
 
 const getWeather = async (city) => {
     const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=0047df6e414bf05f33930a8e660be34d&units=metric`);
@@ -128,14 +129,21 @@ const getWeatherIcon = (id, icon) => {
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     var city = input.value;
-
-    data_container.innerHTML = `<div class="loader">
-    <div class="dots-1"></div></div>`;
+    if (!city) {
+        data_card.innerHTML = `<font size="2" color = "red">Please Enter a city name.</font>`;
+        return;
+    }
+    data_container.innerHTML = `<div class="loaderContainer">
+    <div class="loader">
+    <span></span>
+</div></div>`;
 
     getWeather(city).then((data) => {
 
         if (data.cod == 404) {
-            data_container.innerHTML = "<h1> City Not Found!</h1>"
+            setTimeout(() => {
+                data_container.innerHTML = "<h1> City Not Found!</h1>"
+            }, 1000);
             return;
         }
         else {
@@ -164,7 +172,7 @@ form.addEventListener("submit", (event) => {
                 <div class="data-items">Humidity :&nbsp;&nbsp;<span class="humidity-value">${humidity}</span> &percnt;</div>
                 <div class="data-items date">${date}</div>
                 `;
-            }, 1000);
+            }, 2000);
         }
 
     })

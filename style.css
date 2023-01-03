@@ -5,13 +5,19 @@
 * {
     margin: 0;
     padding: 0;
+
     box-sizing: border-box;
 }
 
 
+
 body {
+    height: 100%;
     font-family: 'Roboto', Arial, sans-serif;
     background-color: #34495e;
+    /* background-image: url(https://wallpaperset.com/w/full/a/a/a/344403.jpg); */
+
+
 }
 
 .wrapper {
@@ -60,7 +66,7 @@ body {
     cursor: pointer;
 }
 
-.head {
+.header {
     font-family: 'Comfortaa', sans-serif;
     display: flex;
     justify-content: center;
@@ -71,24 +77,32 @@ body {
     font-family: 'Poiret One', cursive;
 }
 
-.head img {
-    margin: 1rem;
+.data-card {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+
 }
 
 .data-container {
+    width: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    color: white;
+    color: rgb(255, 255, 255);
     margin-top: -2rem;
     font-family: 'Comfortaa', sans-serif;
+
 
 
 }
 
 
 .data-items {
+
     margin: 10px;
     font-size: 1.2rem;
     white-space: pre;
@@ -116,48 +130,139 @@ body {
 
 
 .footer {
-    position: fixed;
-    left: 0;
+
     bottom: 0;
     width: 100%;
     height: 50px;
-    background-color: #1c2732;
+    /* background-color: #1c2732; */
     color: white;
     text-align: center;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+
 }
 
-.footer a {
-    margin: 10px;
-}
 
 .footer img {
     height: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer a:hover img {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0);
 }
 
 /* Loading screen*/
 
+.loaderContainer {
+    margin-top: 20px;
+}
+
 .loader {
-    margin-top: 100px;
-}
-
-.dots-1 {
-    width: 4px;
-    aspect-ratio: 1;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: transparent;
     border-radius: 50%;
-    box-shadow: 19px 0 0 7px, 38px 0 0 3px, 57px 0 0 0;
-    transform: translateX(-38px);
-    animation: d1 1s infinite alternate linear;
+    -webkit-box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.55);
+    box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.55);
+    border: 1px solid #333;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
 }
 
-@keyframes d1 {
-    50% {
-        box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px
+.loader::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    background: transparent;
+    border: 1px dashed#444;
+    border-radius: 50%;
+    -webkit-box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+    box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loader::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px dashed#444;
+    -webkit-box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+    box-shadow: inset -5px -5px 25px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 35px rgba(0, 0, 0, 0.25);
+}
+
+.loader span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    -webkit-animation: radar81 2s linear infinite;
+    animation: radar81 2s linear infinite;
+    border-top: 1px dashed #fff;
+}
+
+.loader span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: seagreen;
+    -webkit-transform-origin: top left;
+    -ms-transform-origin: top left;
+    transform-origin: top left;
+    -webkit-transform: rotate(-55deg);
+    -ms-transform: rotate(-55deg);
+    transform: rotate(-55deg);
+    -webkit-filter: blur(30px) drop-shadow(20px 20px 20px seagreen);
+    filter: blur(30px) drop-shadow(20px 20px 20px seagreen);
+}
+
+@-webkit-keyframes radar81 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
     }
 
     100% {
-        box-shadow: 19px 0 0 0, 38px 0 0 3px, 57px 0 0 7px
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes radar81 {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
     }
 }
