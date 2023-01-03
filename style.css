@@ -112,6 +112,33 @@ body {
     font-size: 0.9rem;
 }
 
+/* footer */
+
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #1c2732;
+    color: white;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer a {
+    margin: 10px;
+}
+
+.footer img {
+    height: 30px;
+}
+
+/* Loading screen*/
+
 .loader {
     margin-top: 100px;
 }
