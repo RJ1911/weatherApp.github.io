@@ -142,7 +142,8 @@ form.addEventListener("submit", (event) => {
 
         if (data.cod == 404) {
             setTimeout(() => {
-                data_container.innerHTML = "<h1> City Not Found!</h1>";
+                data_container.innerHTML = `<img style ="  width: 75px;
+                height: 75px; margin-bottom: 40px;" class="sad_face" src="./weatherIcons/sad_face_white.png"/><h1> City Not Found!</h1>`;
             }, 1000);
             return;
         }
