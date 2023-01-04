@@ -166,12 +166,12 @@ form.addEventListener("submit", (event) => {
 
             const loading = setTimeout(() => {
                 data_container.innerHTML = `
+                <div class="data-items date">${date}</div>
                 <div class="data-items"><span class="city">${city}</span> , <span class="country">${country}</span></div>
                 <img class="condition-image" src="./weatherIcons/${conditionImage}.png" alt="Weather Condition Image">
-                <div class="data-items condition">${condition}</div>
+                <div class="data-items condition" style = "font-style: italic;">${condition}</div>
                 <div class="data-items">Temperature :&nbsp;&nbsp;<span class="temp-value">${temp} &deg;C</span></div>
                 <div class="data-items">Humidity :&nbsp;&nbsp;<span class="humidity-value">${humidity}</span> &percnt;</div>
-                <div class="data-items date">${date}</div>
                 `;
             }, 2000);
         }
